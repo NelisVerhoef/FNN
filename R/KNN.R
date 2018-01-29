@@ -68,7 +68,7 @@ get.knnx<- function (data, query, k = 10, algorithm=c("kd_tree", "cover_tree", "
                 CR = "get_KNNX_CR",
                 brute = "get_KNNX_brute"
   ); 
-  knnres<- .C(Cname, t(data), t(query), as.integer(k), d, n, m, nn.index = integer(m*k), nn.dist = double(m*k), DUP=FALSE);
+  knnres<- .C(Cname, PACKAGE = 'FNN', t(data), t(query), as.integer(k), d, n, m, nn.index = integer(m*k), nn.dist = double(m*k), DUP=FALSE);
                                              
   nn.index<- matrix(knnres$nn.index, byrow=T, nrow=m, ncol=k);
   nn.dist<-  matrix(knnres$nn.dist,  byrow=T, nrow=m, ncol=k);
